@@ -1,113 +1,111 @@
-# 🔋 Electric Vehicle (EV) Data Analysis & Insights
-### 🧠 Week-1: AI/ML Internship Project  
+# 🚗 EV Range Predictor — Internship Project
 
-## 📋 Project Overview
-This project focuses on analyzing, cleaning, and deriving insights from electric vehicle (EV) datasets to understand performance trends, specifications, and market patterns in the growing EV industry.  
-Raw data often contains inconsistencies, missing values, or unstructured information — this project transforms that raw data into actionable insights through data preprocessing, visualization, and exploratory analysis.
+**Project:** Predict driving range (km) of electric vehicles using performance and battery specs.  
+
+**Author :** SURIYA D          
+
+**Dataset :** `electric_vehicle_raw_data.csv` (source: Kaggle).
 
 ---
 
-## 📂 Repository Structure
 
+## Project Overview
+
+This project trains a regression model to predict the driving range of electric vehicles from numeric features such as battery capacity, torque, efficiency, dimensions, and charging power. The trained model is exposed via a Streamlit app for single and batch predictions.
+
+---
+
+
+## Repository Structure
+```
+EV-Range-Project/
+├── models/
+│ ├── ev_range_predictor.joblib # trained pipeline (model + preprocessing)
+│ └── metadata.json # features & target metadata
+├── electric_vehicle_cleaned_data.csv
+├── train_model.py
+├── predict_example.py
+├── streamlit_app.py
+├── requirements.txt
+└── README.md
 
 ```
-Week-1/
-│
-├── cars_data_RAW.csv           # Original dataset before cleaning
-├── cars_data_cleaned.csv       # Dataset after preprocessing
-├── ev_vehicle.py               # Python script for data analysis
-└── README.md                   # Project overview and usage guide
 
+---
 
+## How to run locally
+
+**1. Create & activate a virtual environment (recommended):**
+```
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+source venv/bin/activate
 ```
 
----
 
-## ⚙️ Key Features
-
-### 🔹 EV Data Preprocessing
-- Cleaned and structured raw dataset for consistency.  
-- Handled missing values, duplicates, and outliers.  
-- Standardized data formats for better analysis.
-
-### 🔹 Exploratory Data Analysis (EDA)
-- Visualized EV performance trends using graphs and charts.  
-- Identified top manufacturers and vehicle categories.  
-- Compared factors such as range, cost, and charging efficiency.  
-- Derived insights into adoption trends and market distribution.
-
-### 🔹 Future Scope
-- Build ML models for predicting EV range, cost, or efficiency.  
-- Develop dashboards to visualize EV growth over time.  
-- Integrate real-time EV market data for live analytics.
-
----
-
-## 🧰 Technologies Used
-
-| Area | Tools / Libraries |
-|------|--------------------|
-| **Programming Language** | Python 3.x |
-| **Libraries** | pandas, numpy, matplotlib, seaborn |
-| **Environment** | Jupyter Notebook, VS Code |
-| **Version Control** | Git + GitHub |
-
----
-
-## 🚀 How to Run
-
-### 🧩 1. Clone the repository
-```bash
-git clone https://github.com/YourUsername/Week-1.git
-cd Week-1
-```
-
-### 🧩 2. Install dependencies
-If a requirements.txt file exists:
+**2.Install dependencies:**
 ```
 pip install -r requirements.txt
-
 ```
-Otherwise, install manually:
-```
-pip install pandas numpy matplotlib seaborn
-```
-### 🧠 3. Run EV Analysis
-```
-python ev_vehicle.py
-```
----
-### 📊 Example Insights
 
-Top EV Manufacturers by sales and market share.
+**3.Ensure the `models/ev_range_predictor.joblib` and `models/metadata.json` files exist and `electric_vehicle_cleaned_data.csv` is present (optional for sample evaluation).**
 
-Comparison of charging time vs. driving range.
 
-Year-wise growth trends in electric vehicle adoption.
 
-Cost distribution analysis across EV types and models.
+**4.Start the Streamlit app:**
+```
+streamlit run streamlit_app.py
+```
+Open `http://localhost:8501` in your browser.
+
 ---
 
-### 🔮 Future Enhancements
+## How to use the app
 
-Integrate Machine Learning for performance prediction.
+  **Single input:** Fill the form with vehicle specs and click Predict range.
 
-Deploy interactive dashboards with Streamlit or Power BI.
+  **Batch input:** Upload a CSV that contains the exact feature columns defined in models/metadata.json, click Predict, and download the result CSV.
 
-Automate data updates using APIs or web scraping.
+  **Model evaluation:** If the cleaned CSV is present, the app shows a quick RMSE on a sample.
+  
+---
 
-Correlate battery efficiency with weather and usage data.
+## Feature order (must match metadata.json):
+```
+top_speed_kmh
+battery_capacity_kWh
+number_of_cells
+torque_nm
+efficiency_wh_per_km
+acceleration_0_100_s
+fast_charging_power_kw_dc
+length_mm
+width_mm
+height_mm
+```
 
 ---
+
+
+## Notes & best practices
+
+Keep the model and metadata files consistent; if retraining, update metadata.json.
+
+If the model file is large, store it in cloud storage (Google Drive / S3) and modify the app to download at startup.
+
+For production, use HTTPS hosting and do not store sensitive info in the repo.
+
+---
+
 ### 🧑‍💻 Author
 
-SURIYA.D
-B.Tech Student | Data & AI Enthusiast | Web Developer
+SURIYA  [ B.E Student | Data & AI Enthusiast | Web Developer]
 
-📧 Contact: suriyamail273@gmail.com 
-💼 GitHub: https://github.com/SURIYA273
+📧 Contact: suriyamail273@gmail.com .
 
+💼 GitHub: https://github.com/SURIYA273.
 
----
 
 
